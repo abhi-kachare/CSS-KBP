@@ -1,1 +1,8 @@
-
+<html>
+<head></head>
+<body>
+<script>
+consol.log("hello");
+</script>
+</body>
+</html>
