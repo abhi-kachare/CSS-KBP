@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="dateApp">
+<head>
+    <title>AngularJS Date Filter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="dateController">
+
+    <h2>Enter Date (any format)</h2>
+
+    <input type="text" ng-model="rawDate" placeholder="e.g. Jan 16 2026 or 1/16/2026">
+
+    <p>
+      Formatted (MM/DD/YYYY): 
+      <strong>{{ convertDate(rawDate) | date:'MM/dd/yyyy' }}</strong>
+    </p>
+
+    <script>
+      angular.module("dateApp", [])
+      .controller("dateController", function($scope) {
+          $scope.rawDate = "";
+
+          $scope.convertDate = function(val) {
+              var d = new Date(val);
+              // Check if valid
+              if (!isNaN(d.getTime())) {
+                  return d;
+              }
+              return null;
+          };
+      });
+    </script>
+
+</body>
+</html>
