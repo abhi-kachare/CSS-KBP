@@ -4,6 +4,16 @@
 <body ng-app="myApp">
 
 <table ng-controller="myCtrl" border="1">
+     <thead style="background-color: #f2f2f2;">
+    <tr>
+      <th>student Name</th>
+      <th>marks</th>
+      <th>grade</th>
+      <th>Department</th>
+      <th>Email</th>
+      
+    </tr>
+  </thead>
 <tr ng-repeat="student in students">
   <td>{{student.name}}</td>
   <td>{{student.age}}</td>
