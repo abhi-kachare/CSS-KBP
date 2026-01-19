@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myApp">
+
+<h2>Company Employee Data</h2>
+
+<table ng-controller="myCtrl" border="1" style="border-collapse: collapse; width: 100%;">
+  <thead style="background-color: #f2f2f2;">
+    <tr>
+      <th>Employee ID</th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Department</th>
+      <th>Salary</th>
+      <th>Join Date</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tr ng-repeat="employee in employees">
+    <td>{{employee.id}}</td>
+    <td>{{employee.name}}</td>
+    <td>{{employee.position}}</td>
+    <td>{{employee.department}}</td>
+    <td>${{employee.salary | number}}</td>
+    <td>{{employee.joinDate}}</td>
+    <td>{{employee.email}}</td>
+  </tr>
+</table>
+
+<p style="margin-top: 20px;">Total Employees: {{employees.length}}</p>
+
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope) {
+  $scope.employees = [
+    {
+      "id" : 1001,
+      "name" : "John Smith",
+      "position" : "Software Engineer",
+      "department" : "IT",
+      "salary" : 75000,
+      "joinDate" : "2020-03-15",
+      "email" : "john.smith@company.com"
+    },
+    {
+      "id" : 1002,
+      "name" : "Sarah Johnson",
+      "position" : "Marketing Manager",
+      "department" : "Marketing",
+      "salary" : 82000,
+      "joinDate" : "2019-07-22",
+      "email" : "sarah.j@company.com"
+    },
+    {
+      "id" : 1003,
+      "name" : "Michael Chen",
+      "position" : "Finance Analyst",
+      "department" : "Finance",
+      "salary" : 68000,
+      "joinDate" : "2021-01-10",
+      "email" : "m.chen@company.com"
+    },
+    {
+      "id" : 1004,
+      "name" : "Emily Davis",
+      "position" : "HR Specialist",
+      "department" : "Human Resources",
+      "salary" : 55000,
+      "joinDate" : "2022-05-30",
+      "email" : "emily.davis@company.com"
+    },
+    {
+      "id" : 1005,
+      "name" : "Robert Wilson",
+      "position" : "Sales Director",
+      "department" : "Sales",
+      "salary" : 95000,
+      "joinDate" : "2018-11-05",
+      "email" : "rob.wilson@company.com"
+    },
+    {
+      "id" : 1006,
+      "name" : "Lisa Martinez",
+      "position" : "Project Manager",
+      "department" : "Operations",
+      "salary" : 78000,
+      "joinDate" : "2020-09-14",
+      "email" : "l.martinez@company.com"
+    },
+    {
+      "id" : 1007,
+      "name" : "David Brown",
+      "position" : "Quality Assurance",
+      "department" : "IT",
+      "salary" : 65000,
+      "joinDate" : "2021-06-18",
+      "email" : "david.b@company.com"
+    },
+    {
+      "id" : 1008,
+      "name" : "Jessica Lee",
+      "position" : "Graphic Designer",
+      "department" : "Creative",
+      "salary" : 58000,
+      "joinDate" : "2022-02-28",
+      "email" : "jess.lee@company.com"
+    }
+  ]
+});
+</script>
+
+</body>
+</html>

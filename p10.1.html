@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myApp">
+
+<table ng-controller="myCtrl" border="1">
+<tr ng-repeat="student in students">
+  <td>{{student.name}}</td>
+  <td>{{student.age}}</td>
+  <td>{{student.grade}}</td>
+  <td>{{student.major}}</td>
+  <td>{{student.email}}</td>
+</tr>
+</table>
+
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope) {
+  $scope.students = [
+    {
+      "name" : "John Smith",
+      "age" : 20,
+      "grade" : "A",
+      "major" : "Computer Science",
+      "email" : "john.smith@university.edu"
+    },
+    {
+      "name" : "Sarah Johnson",
+      "age" : 21,
+      "grade" : "B+",
+      "major" : "Mathematics",
+      "email" : "sarah.j@university.edu"
+    },
+    {
+      "name" : "Michael Chen",
+      "age" : 19,
+      "grade" : "A-",
+      "major" : "Engineering",
+      "email" : "m.chen@university.edu"
+    },
+    {
+      "name" : "Emily Davis",
+      "age" : 22,
+      "grade" : "B",
+      "major" : "Biology",
+      "email" : "emily.davis@university.edu"
+    },
+    {
+      "name" : "Robert Wilson",
+      "age" : 20,
+      "grade" : "A",
+      "major" : "Physics",
+      "email" : "rob.wilson@university.edu"
+    },
+    {
+      "name" : "Lisa Martinez",
+      "age" : 21,
+      "grade" : "B+",
+      "major" : "Chemistry",
+      "email" : "l.martinez@university.edu"
+    },
+    {
+      "name" : "David Brown",
+      "age" : 23,
+      "grade" : "A-",
+      "major" : "Economics",
+      "email" : "david.b@university.edu"
+    },
+    {
+      "name" : "Jessica Lee",
+      "age" : 20,
+      "grade" : "C+",
+      "major" : "Psychology",
+      "email" : "jess.lee@university.edu"
+    },
+    {
+      "name" : "Daniel Taylor",
+      "age" : 22,
+      "grade" : "B",
+      "major" : "Business",
+      "email" : "dan.taylor@university.edu"
+    },
+    {
+      "name" : "Amanda White",
+      "age" : 21,
+      "grade" : "A",
+      "major" : "Art History",
+      "email" : "a.white@university.edu"
+    }
+  ]
+});
+</script>
+
+</body>
+</html>
