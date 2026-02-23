@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Todo App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+        }
+        .input-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            min-width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #4cae4c;
+        }
+        .delete-btn {
+            background: #d9534f;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        .delete-btn:hover {
+            background: #c9302c;
+        }
+        .error {
+            color: #d9534f;
+            font-size: 14px;
+            width: 100%;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            gap: 10px;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        .todo-text {
+            flex: 1;
+            word-break: break-word;
+        }
+        .completed .todo-text {
+            text-decoration: line-through;
+            color: #999;
+        }
+        .empty-message {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+        }
+        @media (max-width: 480px) {
+            .input-section {
+                flex-direction: column;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body ng-controller="TodoController as todoCtrl">
+    <div class="container">
+        <h1>Todo List</h1>
+
+        <!-- Input section -->
+        <div class="input-section">
+            <input type="text"
+                   ng-model="todoCtrl.newTodo"
+                   placeholder="Enter a new task"
+                   ng-keyup="$event.keyCode === 13 && todoCtrl.addTodo()">
+            <button ng-click="todoCtrl.addTodo()">Add Todo</button>
+            <div ng-if="todoCtrl.errorMessage" class="error">{{ todoCtrl.errorMessage }}</div>
+        </div>
+
+        <!-- Todo list -->
+        <div class="list-section">
+            <ul>
+                <li ng-repeat="todo in todoCtrl.todos track by $index"
+                    ng-class="{completed: todo.completed}">
+                    <input type="checkbox"
+                           ng-model="todo.completed"
+                           ng-change="todoCtrl.toggleComplete(todo)">
+                    <span class="todo-text" ng-bind="todo.text"></span>
+                    <button ng-click="todoCtrl.deleteTodo($index)" class="delete-btn">Delete</button>
+                </li>
+            </ul>
+            <div ng-if="todoCtrl.todos.length === 0" class="empty-message">
+                No todos available
+            </div>
+        </div>
+    </div>
+
+    <script>
+        angular.module('todoApp', [])
+            .controller('TodoController', function() {
+                var vm = this;
+
+                // Data
+                vm.todos = [];
+                vm.newTodo = '';
+                vm.errorMessage = '';
+
+                // Add todo
+                vm.addTodo = function() {
+                    // Prevent empty todo
+                    if (!vm.newTodo || vm.newTodo.trim() === '') {
+                        vm.errorMessage = 'Todo cannot be empty!';
+                        return;
+                    }
+
+                    // Add new todo (default not completed)
+                    vm.todos.push({
+                        text: vm.newTodo.trim(),
+                        completed: false
+                    });
+
+                    // Clear input and error
+                    vm.newTodo = '';
+                    vm.errorMessage = '';
+                };
+
+                // Delete todo
+                vm.deleteTodo = function(index) {
+                    vm.todos.splice(index, 1);
+                };
+
+                // Toggle completed (optional, but needed for ng-change)
+                vm.toggleComplete = function(todo) {
+                    // Two-way binding already updates the model, no extra code required
+                };
+            });
+    </script>
+</body>
+</html>
